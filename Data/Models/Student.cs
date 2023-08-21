@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace UniWebProject.Models
+namespace Data.Models
 {
     public class Student
     {

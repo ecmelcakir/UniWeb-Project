@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace UniWebProject.Models
+namespace Data.Context
 {
     public class UniContext : DbContext
     {

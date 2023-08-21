@@ -13,6 +13,8 @@ namespace UniWebProject
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Bootstrapper.Initialise();
+
         }
     }
 }
