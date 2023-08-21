@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Complex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Complex</h2>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+@*<input id="btnSearch" type="button" value=" SEARCH " />*@
+
+<table id="data-table">
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>&nbsp; Course Name</th>
+            <th>&nbsp; Student Name</th>
+        </tr>
+    </thead>
+    <tbody id="data-body">
+        <!-- Veriler buraya eklenecek -->
+    </tbody>
+</table>
+
+
+<script>
+
+    function complex() {
+
+        $.ajax({
+            url: '/Lecturer/Complex', // Controller ve method adınızı buraya ekleyin
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                // AJAX isteği başarılı oldu, verileri kullanarak istediğiniz işlemleri yapabilirsiniz
+                // Örneğin, verileri bir tabloya eklemek gibi
+                var tableBody = $('#data-body'); // tbody elementini seçin
+                //*tb clear yapma?***
+                // Verileri döngü ile tabloya ekleyin
+                $.each(data, function (index, item) {
+                    var row = $('<tr>'); // Yeni bir satır oluşturun
+
+                    // Satır içine hücreler ekleyin
+                    row.append($('<td>').text(item.LecturerName));
+                    row.append($('<td>').text(item.CourseName));
+                    row.append($('<td>').text(item.StudentName));
+
+
+                    tableBody.append(row); // Satırı tbody içine ekleyin
+                });
+            },
+            error: function () {
+                alert('Data not found'); // Hata durumunda yapılacak işlemler
+            }
+        });
+    }
+</script>
+
+<button onclick="complex()">CLICK ON</button>

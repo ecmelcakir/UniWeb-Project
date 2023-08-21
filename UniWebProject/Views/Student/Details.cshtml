@@ -1,0 +1,50 @@
+﻿@model UniWebProject.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Lecturer Name
+        </dt>
+
+        <dd>
+            @Model.Lecturer.LecName
+        </dd>
+
+        <dt>
+            Student Name
+        </dt>
+
+        <dd>
+           @Model.StuName
+        </dd>
+
+        <dt>
+            Department
+        </dt>
+
+        <dd>
+            @Model.Department
+        </dd>
+
+        <dt>
+            Entry Date
+        </dt>
+
+        <dd>
+            @Model.Entrydate.ToString("dd.MM.yyyy")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

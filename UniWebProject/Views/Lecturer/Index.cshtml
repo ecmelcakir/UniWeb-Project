@@ -1,0 +1,40 @@
+﻿@using UniWebProject.Models;
+
+@model IEnumerable<Lecturer>
+
+@{
+    ViewBag.Title = "Lecturer";
+}
+
+<h2>Lecturers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+    @foreach (var lecturer in Model)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+
+                <img src="~/images/img2.png" alt="..." style="border-style: solid; max-width:80%;">
+                <div class="caption">
+                    <h3> @lecturer.LecName </h3>
+                    
+                    <p>
+                        @lecturer.EntryDate.ToString("dd.MM.yyyy")
+                    </p>
+                    <p>
+                        @lecturer.Job
+                    </p>
+                    <p>
+                        <a href="/Lecturer/Details/?id=@lecturer.Id" class="btn btn-primary" role="button">Details</a> <a href="@Url.Action("Delete", "Lecturer", new { id=lecturer.Id })" class="btn btn-danger" role="button">Delete</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+
+

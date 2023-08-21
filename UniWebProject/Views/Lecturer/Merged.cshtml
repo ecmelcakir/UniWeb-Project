@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Merged";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+@*<input id="btnSearch" type="button" value=" SEARCH " />*@
+
+<h2><br />Merged</h2>
+
+<table id="data-table">
+    <thead>
+        <tr>
+            <th>Lecturer Name</th>
+            <th>&nbsp; Course Name</th>
+        </tr>
+    </thead>
+    <tbody id="data-body">
+        <!-- Veriler buraya eklenecek -->
+    </tbody>
+</table>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        lectureCourses();
+
+    })
+    function lectureCourses() {
+
+
+        $.ajax({
+            url: '/Lecturer/Merged', // Controller ve method adınızı buraya ekleyin
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+                // AJAX isteği başarılı oldu, verileri kullanarak istediğiniz işlemleri yapabilirsiniz
+                // Örneğin, verileri bir tabloya eklemek gibi
+                var tableBody = $('#data-body'); // tbody elementini seçin
+
+                // Verileri döngü ile tabloya ekleyin
+                $.each(data, function (index, item) {
+                    var row = $('<tr>'); // Yeni bir satır oluşturun
+
+                    // Satır içine hücreler ekleyin
+                    row.append($('<td>').text(item.LecturerName));
+                    row.append($('<td>').text(item.CourseName));
+
+                    tableBody.append(row); // Satırı tbody içine ekleyin
+                });
+            },
+            error: function () {
+                alert('Data not found'); // Hata durumunda yapılacak işlemler
+            }
+        });
+    }
+</script>

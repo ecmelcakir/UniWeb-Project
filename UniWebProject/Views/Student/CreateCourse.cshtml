@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "CreateCourse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    function submitCourse() {
+        var studentId = $("#StudentId").val();
+        var courseId = $("#CourseId").val();
+        //post data oluşturduk
+        var data = { 'Student_Id': studentId, 'Course_Id': courseId };
+        console.log(data);
+        $.ajax({
+            type: 'POST',
+            url: '/Student/CreateCourse',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: function (result) {
+                alert('Successfully received Data ');
+                console.log(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    }
+
+</script>
+
+
+<h4><br>Add Course Deatils</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="courseForm" novalidate class="needs-validation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+            <div class="form-group">
+                <label asp-for="Course Id" class="control-label"></label>
+                @Html.DropDownList("CourseId", ViewBag.CourseId as SelectList, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Student Id" class="control-label"></label>
+                @Html.DropDownList("StudentId", ViewBag.StudentId as SelectList, htmlAttributes: new { @class = "form-control" })
+
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="submitCourse()">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
